@@ -3,6 +3,8 @@
 :root{
     --background: #000000;
     --main-color: #ffffff;
+    --second-color: rgb(58, 86, 128);
+    --second-color-alpha60: rgba(58, 86, 128, 0.6);
 }
 *{
     box-sizing: border-box;
@@ -54,4 +56,51 @@ p, button{
 }
 .home-info h2{
     font-size: 30px;
+}
+.container{
+    width: 100%;
+}
+.switches{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 0;
+}
+.switches button{
+    font-size: 22px;
+    padding: 10px 40px;
+    margin: 0 30px;
+    color: var(--main-color);
+    background-color: var(--second-color);
+    border: none;
+    border-radius: 5px;
+}
+.switches button:hover{
+    background-color: var(--second-color-alpha60);
+    transition: all 0.3s ease-in;
+}
+.input{
+    width: 100%;
+}
+.input-salary{
+    font-family: 'Source Sans Pro', sans-serif;
+    height: 35px;
+    font-size: 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--main-color);
+    text-align: center;
+}
+.input span{
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 20px;
+    margin: 0 10px;
+}
+.contract-of-employment{
+    transition: all 0.5s ease;
+}
+.contract-of-employment form{
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 18px;
+    padding: 50px 0;
 }
