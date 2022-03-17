@@ -25,20 +25,20 @@
                 <button type="button" class="form-of-employment">Umowa o dzieło</button>
             </div>
             <div class="input">
-                <input type="text" placeholder="Wynagrodzenie brutto" class="input-salary" required><span>PLN</span>
+                <input type="text" placeholder="Wynagrodzenie brutto" class="input-salary" id="salary" pattern ="[0-9]{10}" required ><span>PLN</span>
+                <section class="contract-of-employment">
+                    <form class="first-form">
+                        <label for="work">praca w miejscu zamieszkania</label>
+                        <input type="checkbox" value="work" name="work" checked><br>
+                        <label for="age">ukończony 26 rok życia</label>
+                        <input type="checkbox" id="age" name="age"><br>
+                        <label for="reduction">miesięczna ulga dla klasy średniej</label>
+                        <input type="checkbox" id="reduction" name="reduction">
+                    </form>
+                    <button type="submit" class="button-contract-of-employment">Oblicz</button>
+                </section>
             </div>
         </div>
-        <section class="contract-of-employment">
-            <form>
-                <label for="fname">praca w miejscu zamieszkania</label>
-                <input type="checkbox" id="fname" name="fname"><br>
-                <label for="lname">ukończony 26 rok życia</label>
-                <input type="checkbox" id="lname" name="lname"><br>
-                <label for="lname">miesięczna ulga dla klasy średniej</label>
-                <input type="checkbox" id="lname" name="lname">
-            </form>
-            <button type="submit" class="button-contract-of-employment">Oblicz</button>
-        </section>
     </div>
     <script src="script.js"></script>
 </body>

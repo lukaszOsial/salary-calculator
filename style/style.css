@@ -66,7 +66,7 @@ p, button{
     justify-content: center;
     padding: 30px 0;
 }
-.switches button{
+ button{
     font-size: 22px;
     padding: 10px 40px;
     margin: 0 30px;
@@ -74,6 +74,7 @@ p, button{
     background-color: var(--second-color);
     border: none;
     border-radius: 5px;
+    cursor: pointer;
 }
 .switches button:hover{
     background-color: var(--second-color-alpha60);
@@ -103,4 +104,14 @@ p, button{
     font-family: 'Source Sans Pro', sans-serif;
     font-size: 18px;
     padding: 50px 0;
+    line-height: 2;
+    max-width: 400px;
+}
+.contract-of-employment form input{
+    position: relative;
+    cursor: pointer;
+}
+.contract-of-employment button{
+    display: flex;
+    margin: 0 auto;
 }
