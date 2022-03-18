@@ -85,8 +85,8 @@ p, button{
 }
 .input-salary{
     font-family: 'Source Sans Pro', sans-serif;
-    height: 35px;
-    font-size: 20px;
+    height: 40px;
+    font-size: 25px;
     border: none;
     border-radius: 5px;
     background-color: var(--main-color);
@@ -100,18 +100,31 @@ p, button{
 .contract-of-employment{
     transition: all 0.5s ease;
 }
-.contract-of-employment form{
+.input form{
     font-family: 'Source Sans Pro', sans-serif;
-    font-size: 18px;
+    font-size: 20px;
     padding: 50px 0;
-    line-height: 2;
-    max-width: 400px;
+    line-height: 2.5;
+    max-width: 450px;
 }
-.contract-of-employment form input{
-    position: relative;
+.contract-of-employment .first-form input[type="checkbox"],.second-form input[type="radio"]{
     cursor: pointer;
+    accent-color: var(--second-color);
+    position: relative;
+    transform: scale(2.5);
+    float: right;
+    top: 20px;
 }
-.contract-of-employment button{
+section button{
     display: flex;
     margin: 0 auto;
 }
+section button:hover{
+    background-color: var(--second-color-alpha60);
+    transition: all 0.3s ease-in;
+}
+.second-form p{
+    font-size: 25px;
+    text-align: center;
+}
+

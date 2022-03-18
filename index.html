@@ -26,16 +26,40 @@
             </div>
             <div class="input">
                 <input type="text" placeholder="Wynagrodzenie brutto" class="input-salary" id="salary" pattern ="[0-9]{10}" required ><span>PLN</span>
-                <section class="contract-of-employment">
+                <section class="contract-of-employment hidden">
                     <form class="first-form">
                         <label for="work">praca w miejscu zamieszkania</label>
-                        <input type="checkbox" value="work" name="work" checked><br>
+                        <input type="checkbox" value="work" name="first"><br>
                         <label for="age">ukończony 26 rok życia</label>
-                        <input type="checkbox" id="age" name="age"><br>
+                        <input type="checkbox" value="age" name="first"><br>
                         <label for="reduction">miesięczna ulga dla klasy średniej</label>
-                        <input type="checkbox" id="reduction" name="reduction">
+                        <input type="checkbox" value="reduction" name="first">
                     </form>
                     <button type="submit" class="button-contract-of-employment">Oblicz</button>
+                </section>
+                <section class="contract-of-mandate hidden">
+                    <form class="second-form">
+                        <p>wybierz rodzaj umowy zlecenie</p>
+                        <label for="employee">z osobą nie będącą nigdzie zatrudnioną</label>
+                        <input type="radio" value="employee" name="second" checked><br>
+                        <label for="student">z uczniem lub studentem do 26 roku życia</label>
+                        <input type="radio" value="student" name="second"><br>
+                        <label for="pensioner">z emerytem lub rencistą</label>
+                        <input type="radio" value="pensioner" name="second">
+                    </form>
+                    <button type="submit" class="button-contract-of-mandate">Oblicz</button>
+                </section>
+                <section class="contract-work">
+                    <form class="third-form">
+                        <label for="tax">zryczałtowany podatek</label>
+                        <input type="checkbox" value="tax" name="third"><br>
+                        <label>koszty uzyskania przychodu</label>
+                        <input type="radio" value="twentyPercent" name="third" checked>
+                        <label for="twentyPercent">20%</label>
+                        <input type="radio" value="fiftyPercent" name="third">
+                        <label for="fiftyPercent">50%</label>
+                    </form>
+                    <button type="submit" class="button-contract-work">Oblicz</button>
                 </section>
             </div>
         </div>
