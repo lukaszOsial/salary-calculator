@@ -16,5 +16,4 @@ function getFirstForm(){
         checked += ' ' + first[i].value;
         }
     }
-    console.log(checked);
 }
