@@ -20,13 +20,13 @@
         </div>
         <div class="container">
             <div class="switches">
-                <button type="button" class="form-of-employment">Umowa o prace</button>
-                <button type="button" class="form-of-employment">Umowa zlecenie</button>
-                <button type="button" class="form-of-employment">Umowa o dzieło</button>
+                <button type="button" class="form-of-employment active" data-target="#contract-of-employment">Umowa o prace</button>
+                <button type="button" class="form-of-employment" data-target="#contract-of-mandate">Umowa zlecenie</button>
+                <button type="button" class="form-of-employment" data-target="#contract-work">Umowa o dzieło</button>
             </div>
             <div class="input">
                 <input type="text" placeholder="Wynagrodzenie brutto" class="input-salary" id="salary" pattern ="[0-9]{10}" required ><span>PLN</span>
-                <section class="contract-of-employment hidden">
+                <section class="contract-of-employment active" id="contract-of-employment">
                     <form class="first-form">
                         <label for="work">praca w miejscu zamieszkania</label>
                         <input type="checkbox" value="work" name="first"><br>
@@ -37,7 +37,7 @@
                     </form>
                     <button type="submit" class="button-contract-of-employment">Oblicz</button>
                 </section>
-                <section class="contract-of-mandate hidden">
+                <section class="contract-of-mandate" id="contract-of-mandate">
                     <form class="second-form">
                         <p>wybierz rodzaj umowy zlecenie</p>
                         <label for="employee">z osobą nie będącą nigdzie zatrudnioną</label>
@@ -49,15 +49,17 @@
                     </form>
                     <button type="submit" class="button-contract-of-mandate">Oblicz</button>
                 </section>
-                <section class="contract-work">
+                <section class="contract-work" id="contract-work">
                     <form class="third-form">
+                        <label for="tax">jednoczesne zatrudnienie na umowę o pracę u tego samego pracodawcy</label>
+                        <input type="checkbox" value="contract" name="thirdCheckboxes"><br>
                         <label for="tax">zryczałtowany podatek</label>
-                        <input type="checkbox" value="tax" name="third"><br>
+                        <input type="checkbox" value="tax" name="thirdCheckboxes"><br>
                         <label>koszty uzyskania przychodu</label>
-                        <input type="radio" value="twentyPercent" name="third" checked>
-                        <label for="twentyPercent">20%</label>
-                        <input type="radio" value="fiftyPercent" name="third">
+                        <input type="radio" value="fiftyPercent" name="thirdRadio">
                         <label for="fiftyPercent">50%</label>
+                        <input type="radio" value="twentyPercent" name="thirdRadio" checked>
+                        <label for="twentyPercent">20%</label>
                     </form>
                     <button type="submit" class="button-contract-work">Oblicz</button>
                 </section>

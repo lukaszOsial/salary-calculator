@@ -97,7 +97,7 @@ p, button{
     font-size: 20px;
     margin: 0 10px;
 }
-.contract-of-employment{
+.contract-of-employment,.contract-of-mandate,.contract-work{
     transition: all 0.5s ease;
 }
 .input form{
@@ -105,15 +105,24 @@ p, button{
     font-size: 20px;
     padding: 50px 0;
     line-height: 2.5;
-    max-width: 450px;
 }
-.contract-of-employment .first-form input[type="checkbox"],.second-form input[type="radio"]{
+.first-form,.second-form{
+    max-width: 500px;
+}
+.third-form{
+    max-width: 780px;
+}
+.first-form input[type="checkbox"],.second-form input[type="radio"],.third-form input[type="checkbox"],.third-form input[type="radio"]{
     cursor: pointer;
     accent-color: var(--second-color);
     position: relative;
     transform: scale(2.5);
     float: right;
     top: 20px;
+}
+.third-form label[for="twentyPercent"],.third-form label[for="fiftyPercent"]{
+    padding: 0 15px;
+    float: right;
 }
 section button{
     display: flex;
@@ -126,5 +135,15 @@ section button:hover{
 .second-form p{
     font-size: 25px;
     text-align: center;
+}
+.switches .form-of-employment.active{
+    background-color: gray;
+    cursor: default;
+}
+section{
+    display: none;
+}
+section.active{
+    display: block;
 }
 
