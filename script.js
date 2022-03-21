@@ -11,34 +11,56 @@ switches.addEventListener("click", (element) =>{
         container.querySelector(target).classList.add("active");
     }
 });
-/*-----Get information from forms----*/
+/*-----Buttons----*/
 const firstSalaryButton = document.querySelector(".button-contract-of-employment");
 firstSalaryButton.addEventListener("click", () =>{
     getSalary();
-    getFirstForm();
-});
-
-function getSalary(){
-    let salary = document.getElementById('salary').value;
-    console.log(salary);
-}
-
-function getFirstForm(){
-    const first = document.getElementsByName('first');
-    let checked = [];
-    for(let i = 0; i < first.length; i++){
-    if(first[i].checked){
-        checked += ' ' + first[i].value;
+    function getFirstForm(){
+        const first = document.getElementsByName('first');
+        let checked = [];
+        for(let i = 0; i < first.length; i++){
+        if(first[i].checked){
+            return checked += ' ' + first[i].value;
+            }
         }
+        console.log(checked);
     }
-    console.log(checked);
-}
+    function pensionContributions(){
+        return getSalary() * 0.0976;
+    }
+    function disabilityPensionContribution(){
+        return getSalary() * 0.015;
+    }
+    function sicknessContribution(){
+        return getSalary() * 0.0245;
+    }
+    function socialContributions(){
+        return pensionContributions() + disabilityPensionContribution() + sicknessContribution();
+    }
+    console.log(pensionContributions());
+    console.log(disabilityPensionContribution());
+    console.log(sicknessContribution());
 
+    function healthInsured(){
+        return (getSalary() - socialContributions()) * 0.09;
+    }
+    console.log(healthInsured());
+});
 const secondSalaryButton = document.querySelector(".button-contract-of-mandate");
 secondSalaryButton.addEventListener("click", () =>{
     getSalary();
     getSecondForm();
 });
+const thirdSalaryButton = document.querySelector(".button-contract-work");
+thirdSalaryButton.addEventListener("click", () =>{
+    getSalary();
+    getThirdForm();
+});
+/*-----Get information from forms---*/
+
+function getSalary(){
+    return document.getElementById('salary').value;
+}
 
 function getSecondForm(){
     const second = document.getElementsByName('second');
@@ -50,13 +72,6 @@ function getSecondForm(){
 }
 console.log(radioActive);
 }
-
-const thirdSalaryButton = document.querySelector(".button-contract-work");
-thirdSalaryButton.addEventListener("click", () =>{
-    getSalary();
-    getThirdForm();
-});
-
 function getThirdForm(){
     const thirdCheckboxes = document.getElementsByName('thirdCheckboxes');
     let checked = [];
@@ -76,3 +91,4 @@ function getThirdForm(){
 }
 console.log(radioActive);
 }
+
