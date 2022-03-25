@@ -15,16 +15,7 @@ switches.addEventListener("click", (element) =>{
 const firstSalaryButton = document.querySelector(".button-contract-of-employment");
 firstSalaryButton.addEventListener("click", () =>{
     getSalary();
-    function getFirstForm(){
-        const first = document.getElementsByName('first');
-        let checked = [];
-        for(let i = 0; i < first.length; i++){
-        if(first[i].checked){
-            return checked += ' ' + first[i].value;
-            }
-        }
-        console.log(checked);
-    }
+    getFirstForm();
     function pensionContributions(){
         return getSalary() * 0.0976;
     }
@@ -45,7 +36,45 @@ firstSalaryButton.addEventListener("click", () =>{
         return (getSalary() - socialContributions()) * 0.09;
     }
     console.log(healthInsured());
+    function workChecked(){
+        if(checkedFirstForm.includes("work")){
+            return costOfGettingIncome = 250;
+        }else{
+            return costOfGettingIncome = 300;
+        }
+    }
+    console.log(workChecked());
+    function taxPrepayment(){
+        return getSalary() - socialContributions() - workChecked();
+    }
+    console.log(taxPrepayment());
+    function incomeTax(){
+        if(!checkedFirstForm.includes("age") || taxPrepayment() <= 2500){
+            return 0;
+        }else{
+            return (taxPrepayment() * 0.17) - 425;
+        }
+    }
+    console.log(incomeTax());
+
+    function netSalary(){
+        return getSalary() - socialContributions() - healthInsured() - incomeTax();
+    }
+    netSalary();
+    console.log(netSalary());
+   
 });
+let checkedFirstForm = [];
+function getFirstForm(){
+    const first = document.getElementsByName('first');
+    for(let i = 0; i < first.length; i++){
+    if(first[i].checked){
+        checkedFirstForm += ' ' + first[i].value;
+        }
+    }
+    console.log(checkedFirstForm);
+}
+
 const secondSalaryButton = document.querySelector(".button-contract-of-mandate");
 secondSalaryButton.addEventListener("click", () =>{
     getSalary();
