@@ -16,91 +16,151 @@ const firstSalaryButton = document.querySelector(".button-contract-of-employment
 firstSalaryButton.addEventListener("click", () =>{
     getSalary();
     getFirstForm();
-    function pensionContributions(){
-        return getSalary() * 0.0976;
-    }
-    function disabilityPensionContribution(){
-        return getSalary() * 0.015;
-    }
-    function sicknessContribution(){
-        return getSalary() * 0.0245;
-    }
-    function socialContributions(){
-        return pensionContributions() + disabilityPensionContribution() + sicknessContribution();
-    }
+    pensionContributions();
+    disabilityPensionContribution();
+    sicknessContribution();
+    socialContributions();
+    healthInsured();
+    workChecked();
+    taxPrepayment();
+    incomeTax();
+    netSalary();
     console.log(pensionContributions());
     console.log(disabilityPensionContribution());
     console.log(sicknessContribution());
-
-    function healthInsured(){
-        return (getSalary() - socialContributions()) * 0.09;
-    }
     console.log(healthInsured());
-    function workChecked(){
-        if(checkedFirstForm.includes("work")){
-            return costOfGettingIncome = 250;
-        }else{
-            return costOfGettingIncome = 300;
-        }
-    }
     console.log(workChecked());
-    function taxPrepayment(){
-        return getSalary() - socialContributions() - workChecked();
-    }
     console.log(taxPrepayment());
-    function incomeTax(){
-        if(!checkedFirstForm.includes("age") || taxPrepayment() <= 2500){
-            return 0;
-        }else{
-            return (taxPrepayment() * 0.17) - 425;
-        }
-    }
     console.log(incomeTax());
-
-    function netSalary(){
-        return getSalary() - socialContributions() - healthInsured() - incomeTax();
-    }
-    netSalary();
     console.log(netSalary());
-   
 });
-let checkedFirstForm = [];
-function getFirstForm(){
-    const first = document.getElementsByName('first');
-    for(let i = 0; i < first.length; i++){
-    if(first[i].checked){
-        checkedFirstForm += ' ' + first[i].value;
-        }
-    }
-    console.log(checkedFirstForm);
-}
-
 const secondSalaryButton = document.querySelector(".button-contract-of-mandate");
 secondSalaryButton.addEventListener("click", () =>{
     getSalary();
     getSecondForm();
+    pensionContributionsSecond();
+    disabilityPensionContributionSecond();
+    socialContributionsSecond();
+    healthInsuredSecond();
+    taxPrepaymentSecond();
+    incomeTaxSecond();
+    netSalarySecond();
+
+    console.log(pensionContributionsSecond());
+    console.log(disabilityPensionContributionSecond());
+    console.log(socialContributionsSecond());
+    console.log(healthInsuredSecond());
+    console.log(taxPrepaymentSecond());
+    console.log(incomeTaxSecond());
+    console.log(netSalarySecond()); 
 });
 const thirdSalaryButton = document.querySelector(".button-contract-work");
 thirdSalaryButton.addEventListener("click", () =>{
     getSalary();
     getThirdForm();
 });
-/*-----Get information from forms---*/
 
+
+/*----First salary-----*/
 function getSalary(){
     return document.getElementById('salary').value;
 }
+function getFirstForm(){
+    const first = document.getElementsByName('first');
+    let checkedFirstForm = [];
+    for(let i = 0; i < first.length; i++){
+    if(first[i].checked){
+        return checkedFirstForm += ' ' + first[i].value;
+        }
+    }
+    console.log(checkedFirstForm);
+}
+function pensionContributions(){
+    return getSalary() * 0.0976;
+}
+function disabilityPensionContribution(){
+    return getSalary() * 0.015;
+}
+function sicknessContribution(){
+    return getSalary() * 0.0245;
+}
+function socialContributions(){
+    return pensionContributions() + disabilityPensionContribution() + sicknessContribution();
+}
+function healthInsured(){
+    return (getSalary() - socialContributions()) * 0.09;
+}
+function workChecked(){
+    if(getFirstForm().includes("work")){
+        return costOfGettingIncome = 250;
+    }else{
+        return costOfGettingIncome = 300;
+    }
+}
+function taxPrepayment(){
+    return getSalary() - socialContributions() - workChecked();
+}
+function incomeTax(){
+    if(!getFirstForm().includes("age") || taxPrepayment() <= 2500){
+        return 0;
+    }else{
+        return (taxPrepayment() * 0.17) - 425;
+    }
+}
+function netSalary(){
+    return getSalary() - socialContributions() - healthInsured() - incomeTax();
+}
 
+/*----Second salary-----*/
 function getSecondForm(){
     const second = document.getElementsByName('second');
     let radioActive ='';
     for(let i = 0; i < second.length; i++){
     if(second[i].checked){
-        radioActive = second[i].value;
+        return radioActive = second[i].value;
     }
 }
 console.log(radioActive);
 }
+function pensionContributionsSecond(){
+    if(getSecondForm().includes("student")){
+        return 0;
+    } else {
+        return pensionContributions();
+    }
+}
+function disabilityPensionContributionSecond(){
+    if(getSecondForm().includes("student")){
+        return 0;
+    } else {
+        return disabilityPensionContribution();
+    }
+}
+function socialContributionsSecond(){
+    return pensionContributionsSecond() + disabilityPensionContributionSecond();
+}
+function healthInsuredSecond(){
+    if(getSecondForm().includes("student")){
+        return 0;
+    } else {
+        return (getSalary() - socialContributionsSecond()) * 0.09;
+    }
+}
+function taxPrepaymentSecond(){
+    return (getSalary() - socialContributionsSecond()) * 0.2;
+}
+function incomeTaxSecond(){
+    if(getSecondForm().includes("employeeNormal")){
+        return (getSalary() - socialContributionsSecond() - taxPrepaymentSecond()) * 0.17;
+    }else{
+        return 0;
+    }
+}
+function netSalarySecond(){
+    return getSalary() - socialContributionsSecond() - healthInsuredSecond() - incomeTaxSecond();
+}
+
+/*----Third salary-----*/
 function getThirdForm(){
     const thirdCheckboxes = document.getElementsByName('thirdCheckboxes');
     let checked = [];
@@ -120,4 +180,3 @@ function getThirdForm(){
 }
 console.log(radioActive);
 }
-
