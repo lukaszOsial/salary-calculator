@@ -37,22 +37,23 @@
                 </section>
                 <section class="contract-of-mandate" id="contract-of-mandate">
                     <form class="second-form">
-                        <p>wybierz rodzaj umowy zlecenie</p>
-                        <label for="employee">z osobą nie będącą nigdzie zatrudnioną do 26 roku życia</label>
+                        <p>wybierz opcje</p>
+                        <label for="employee">ZUS płacę u tego pracodawcy i nie mam ukończone 26 lat</label>
                         <input type="radio" value="employeeYoung" name="second" checked><br>
-                        <label for="employee">z osobą nie będącą nigdzie zatrudnioną powyżej 26 roku życia</label>
+                        <label for="employee">ZUS płacę u tego pracodawcy i mam ukończone 26 lat</label>
                         <input type="radio" value="employeeNormal" name="second" checked><br>
-                        <label for="student">z uczniem lub studentem do 26 roku życia</label>
+                        <label for="employee">ZUS płacę u innego pracodawcy i nie mam ukończone 26 lat</label>
+                        <input type="radio" value="employeeSecondYoung" name="second" checked><br>
+                        <label for="employee">ZUS płacę u innego pracodawcy i mam ukończone 26 lat</label>
+                        <input type="radio" value="employeeSecondNormal" name="second" checked><br>
+                        <label for="student">jestem uczniem lub studentem do 26 roku życia</label>
                         <input type="radio" value="student" name="second"><br>
                     </form>
                     <button type="submit" class="button-contract-of-mandate">Oblicz</button>
                 </section>
                 <section class="contract-work" id="contract-work">
                     <form class="third-form">
-                        <label for="tax">jednoczesne zatrudnienie na umowę o pracę u tego samego pracodawcy</label>
-                        <input type="checkbox" value="contract" name="thirdCheckboxes"><br>
-                        <label for="tax">zryczałtowany podatek</label>
-                        <input type="checkbox" value="tax" name="thirdCheckboxes"><br>
+                        
                         <label>koszty uzyskania przychodu</label>
                         <input type="radio" value="fiftyPercent" name="thirdRadio">
                         <label for="fiftyPercent">50%</label>

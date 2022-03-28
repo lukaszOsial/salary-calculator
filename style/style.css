@@ -106,11 +106,8 @@ p, button{
     padding: 50px 0;
     line-height: 2.5;
 }
-.first-form,.second-form{
+.first-form,.second-form,.third-form{
     max-width: 580px;
-}
-.third-form{
-    max-width: 780px;
 }
 .first-form input[type="checkbox"],.second-form input[type="radio"],.third-form input[type="checkbox"],.third-form input[type="radio"]{
     cursor: pointer;

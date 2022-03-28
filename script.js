@@ -58,16 +58,19 @@ const thirdSalaryButton = document.querySelector(".button-contract-work");
 thirdSalaryButton.addEventListener("click", () =>{
     getSalary();
     getThirdForm();
+    incomeTaxThird();
+    netSalaryThird();
+   
+    console.log(incomeTaxThird());
+    console.log(netSalaryThird());
 });
-
-
 /*----First salary-----*/
 function getSalary(){
     return document.getElementById('salary').value;
 }
+let checkedFirstForm = [];
 function getFirstForm(){
     const first = document.getElementsByName('first');
-    let checkedFirstForm = [];
     for(let i = 0; i < first.length; i++){
     if(first[i].checked){
         return checkedFirstForm += ' ' + first[i].value;
@@ -91,17 +94,17 @@ function healthInsured(){
     return (getSalary() - socialContributions()) * 0.09;
 }
 function workChecked(){
-    if(getFirstForm().includes("work")){
-        return costOfGettingIncome = 250;
-    }else{
-        return costOfGettingIncome = 300;
+    if(checkedFirstForm.includes("work")){
+        return 250;
+    }else {
+        return 300;
     }
 }
 function taxPrepayment(){
     return getSalary() - socialContributions() - workChecked();
 }
 function incomeTax(){
-    if(!getFirstForm().includes("age") || taxPrepayment() <= 2500){
+    if(!checkedFirstForm.includes("age") || taxPrepayment() <= 2500){
         return 0;
     }else{
         return (taxPrepayment() * 0.17) - 425;
@@ -112,25 +115,25 @@ function netSalary(){
 }
 
 /*----Second salary-----*/
+let radioActiveSecondForm ='';
 function getSecondForm(){
     const second = document.getElementsByName('second');
-    let radioActive ='';
     for(let i = 0; i < second.length; i++){
     if(second[i].checked){
-        return radioActive = second[i].value;
+        return radioActiveSecondForm = second[i].value;
     }
 }
-console.log(radioActive);
+console.log(radioActiveSecondForm);
 }
 function pensionContributionsSecond(){
-    if(getSecondForm().includes("student")){
+    if(radioActiveSecondForm.includes("student") || radioActiveSecondForm.includes("employeeSecondYoung") || radioActiveSecondForm.includes("employeeSecondNormal")){
         return 0;
     } else {
         return pensionContributions();
     }
 }
 function disabilityPensionContributionSecond(){
-    if(getSecondForm().includes("student")){
+    if(radioActiveSecondForm.includes("student") || radioActiveSecondForm.includes("employeeSecondYoung") || radioActiveSecondForm.includes("employeeSecondNormal")){
         return 0;
     } else {
         return disabilityPensionContribution();
@@ -140,7 +143,7 @@ function socialContributionsSecond(){
     return pensionContributionsSecond() + disabilityPensionContributionSecond();
 }
 function healthInsuredSecond(){
-    if(getSecondForm().includes("student")){
+    if(radioActiveSecondForm.includes("student")){
         return 0;
     } else {
         return (getSalary() - socialContributionsSecond()) * 0.09;
@@ -150,7 +153,7 @@ function taxPrepaymentSecond(){
     return (getSalary() - socialContributionsSecond()) * 0.2;
 }
 function incomeTaxSecond(){
-    if(getSecondForm().includes("employeeNormal")){
+    if(radioActiveSecondForm.includes("employeeNormal") || radioActiveSecondForm.includes("employeeSecondNormal")){
         return (getSalary() - socialContributionsSecond() - taxPrepaymentSecond()) * 0.17;
     }else{
         return 0;
@@ -159,24 +162,24 @@ function incomeTaxSecond(){
 function netSalarySecond(){
     return getSalary() - socialContributionsSecond() - healthInsuredSecond() - incomeTaxSecond();
 }
-
 /*----Third salary-----*/
+let radioActiveThirdForm = '';
 function getThirdForm(){
-    const thirdCheckboxes = document.getElementsByName('thirdCheckboxes');
-    let checked = [];
-    for(let i = 0; i < thirdCheckboxes.length; i++){
-        if(thirdCheckboxes[i].checked){
-            checked += ' ' + thirdCheckboxes[i].value;
-            }
-        }
-        console.log(checked);
-
     const thirdRadio = document.getElementsByName('thirdRadio');
-    let radioActive = '';
     for(let i = 0; i < thirdRadio.length; i++){
     if(thirdRadio[i].checked){
-        radioActive = thirdRadio[i].value;
+        return radioActiveThirdForm = thirdRadio[i].value;
     }
 }
 console.log(radioActive);
+}
+function incomeTaxThird(){
+    if(radioActiveThirdForm.includes("twentyPercent")){
+        return (getSalary() - (getSalary()  * 0.2)) * 0.17;
+    }else{   
+        return (getSalary()  * 0.5) * 0.17;     
+    }
+}
+function netSalaryThird(){
+    return getSalary() - incomeTaxThird();
 }
