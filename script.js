@@ -25,14 +25,6 @@ firstSalaryButton.addEventListener("click", () =>{
     taxPrepayment();
     incomeTax();
     netSalary();
-    console.log(pensionContributions());
-    console.log(disabilityPensionContribution());
-    console.log(sicknessContribution());
-    console.log(healthInsured());
-    console.log(workChecked());
-    console.log(taxPrepayment());
-    console.log(incomeTax());
-    console.log(netSalary());
 });
 const secondSalaryButton = document.querySelector(".button-contract-of-mandate");
 secondSalaryButton.addEventListener("click", () =>{
@@ -45,14 +37,6 @@ secondSalaryButton.addEventListener("click", () =>{
     taxPrepaymentSecond();
     incomeTaxSecond();
     netSalarySecond();
-
-    console.log(pensionContributionsSecond());
-    console.log(disabilityPensionContributionSecond());
-    console.log(socialContributionsSecond());
-    console.log(healthInsuredSecond());
-    console.log(taxPrepaymentSecond());
-    console.log(incomeTaxSecond());
-    console.log(netSalarySecond()); 
 });
 const thirdSalaryButton = document.querySelector(".button-contract-work");
 thirdSalaryButton.addEventListener("click", () =>{
@@ -60,13 +44,13 @@ thirdSalaryButton.addEventListener("click", () =>{
     getThirdForm();
     incomeTaxThird();
     netSalaryThird();
-   
-    console.log(incomeTaxThird());
-    console.log(netSalaryThird());
 });
 /*----First salary-----*/
 function getSalary(){
-    return document.getElementById('salary').value;
+    let grossSalary = document.getElementById('salary').value;
+    document.getElementById("tableGrossSalary").innerHTML = grossSalary;
+    document.getElementById("tableGrossSalarySecond").innerHTML = grossSalary;
+    return grossSalary;
 }
 let checkedFirstForm = [];
 function getFirstForm(){
@@ -79,19 +63,20 @@ function getFirstForm(){
     console.log(checkedFirstForm);
 }
 function pensionContributions(){
-    return getSalary() * 0.0976;
+    return document.getElementById("pensionContribution").innerHTML = getSalary() * 0.0976;
 }
 function disabilityPensionContribution(){
-    return getSalary() * 0.015;
+    return document.getElementById("disabilityPensionContribution").innerHTML = getSalary() * 0.015;
 }
 function sicknessContribution(){
-    return getSalary() * 0.0245;
+    return document.getElementById("sicknessContribution").innerHTML = getSalary() * 0.0245;
+    
 }
 function socialContributions(){
     return pensionContributions() + disabilityPensionContribution() + sicknessContribution();
 }
 function healthInsured(){
-    return (getSalary() - socialContributions()) * 0.09;
+    return document.getElementById("healthInsured").innerHTML = (getSalary() - socialContributions()) * 0.09;
 }
 function workChecked(){
     if(checkedFirstForm.includes("work")){
@@ -105,13 +90,17 @@ function taxPrepayment(){
 }
 function incomeTax(){
     if(!checkedFirstForm.includes("age") || taxPrepayment() <= 2500){
-        return 0;
+        return document.getElementById("incomeTax").innerHTML = 0;
     }else{
-        return (taxPrepayment() * 0.17) - 425;
+        return document.getElementById("incomeTax").innerHTML = (taxPrepayment() * 0.17) - 425;
     }
+    
 }
 function netSalary(){
-    return getSalary() - socialContributions() - healthInsured() - incomeTax();
+    let netSalary = getSalary() - socialContributions() - healthInsured() - incomeTax();
+    document.getElementById("tableNetSalary").innerHTML = netSalary;
+    document.getElementById("tableNetSalarySecond").innerHTML = netSalary;
+    return netSalary;
 }
 
 /*----Second salary-----*/
@@ -127,14 +116,14 @@ console.log(radioActiveSecondForm);
 }
 function pensionContributionsSecond(){
     if(radioActiveSecondForm.includes("student") || radioActiveSecondForm.includes("employeeSecondYoung") || radioActiveSecondForm.includes("employeeSecondNormal")){
-        return 0;
+        return document.getElementById("pensionContribution").innerHTML = 0;
     } else {
         return pensionContributions();
     }
 }
 function disabilityPensionContributionSecond(){
     if(radioActiveSecondForm.includes("student") || radioActiveSecondForm.includes("employeeSecondYoung") || radioActiveSecondForm.includes("employeeSecondNormal")){
-        return 0;
+        return document.getElementById("disabilityPensionContribution").innerHTML = 0;
     } else {
         return disabilityPensionContribution();
     }
@@ -144,9 +133,9 @@ function socialContributionsSecond(){
 }
 function healthInsuredSecond(){
     if(radioActiveSecondForm.includes("student")){
-        return 0;
+        return document.getElementById("healthInsured").innerHTML = 0;
     } else {
-        return (getSalary() - socialContributionsSecond()) * 0.09;
+        return document.getElementById("healthInsured").innerHTML = (getSalary() - socialContributionsSecond()) * 0.09;
     }
 }
 function taxPrepaymentSecond(){
@@ -154,13 +143,17 @@ function taxPrepaymentSecond(){
 }
 function incomeTaxSecond(){
     if(radioActiveSecondForm.includes("employeeNormal") || radioActiveSecondForm.includes("employeeSecondNormal")){
-        return (getSalary() - socialContributionsSecond() - taxPrepaymentSecond()) * 0.17;
+        return document.getElementById("incomeTax").innerHTML = (getSalary() - socialContributionsSecond() - taxPrepaymentSecond()) * 0.17;
     }else{
-        return 0;
+        return document.getElementById("incomeTax").innerHTML = 0;
     }
 }
 function netSalarySecond(){
-    return getSalary() - socialContributionsSecond() - healthInsuredSecond() - incomeTaxSecond();
+    let netSalary = getSalary() - socialContributionsSecond() - healthInsuredSecond() - incomeTaxSecond();
+    document.getElementById("tableNetSalary").innerHTML = netSalary;
+    document.getElementById("tableNetSalarySecond").innerHTML = netSalary;
+    return netSalary;
+    
 }
 /*----Third salary-----*/
 let radioActiveThirdForm = '';
@@ -175,11 +168,14 @@ console.log(radioActive);
 }
 function incomeTaxThird(){
     if(radioActiveThirdForm.includes("twentyPercent")){
-        return (getSalary() - (getSalary()  * 0.2)) * 0.17;
+        return document.getElementById("incomeTax").innerHTML = (getSalary() - (getSalary()  * 0.2)) * 0.17;
     }else{   
-        return (getSalary()  * 0.5) * 0.17;     
+        return document.getElementById("incomeTax").innerHTML = (getSalary()  * 0.5) * 0.17;     
     }
 }
 function netSalaryThird(){
-    return getSalary() - incomeTaxThird();
+    let netSalary = getSalary() - incomeTaxThird();
+    document.getElementById("tableNetSalary").innerHTML = netSalary;
+    document.getElementById("tableNetSalarySecond").innerHTML = netSalary;
+    return netSalary;
 }

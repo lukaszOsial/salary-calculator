@@ -53,7 +53,6 @@
                 </section>
                 <section class="contract-work" id="contract-work">
                     <form class="third-form">
-                        
                         <label>koszty uzyskania przychodu</label>
                         <input type="radio" value="fiftyPercent" name="thirdRadio">
                         <label for="fiftyPercent">50%</label>
@@ -62,6 +61,52 @@
                     </form>
                     <button type="submit" class="button-contract-work">Oblicz</button>
                 </section>
+            </div>
+            <div class="output">
+                <table class="employeeSalary">
+                    <tr>
+                        <td id="tableNetSalary">0</td> 
+                        <td id="tableGrossSalary">0</td>
+                        <td rowspan="2">
+                            <button type="submit" class="button-reset">Zmień kryteria obliczeń</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>kwota netto</td>
+                        <td>kwota brutto</td>
+                    </tr>
+                </table>
+                <p>Koszty pracownika dla miesięcznego wynagrodzenia</p>
+                <table class="employeeCosts">
+                    <tr>
+                        <td>kwota netto</td>
+                        <td id="tableNetSalarySecond">0</td>
+                    </tr>
+                    <tr>
+                        <td>ubezpieczenie emerytalne</td>
+                        <td id="pensionContribution">0</td>
+                    </tr>
+                    <tr>
+                        <td>ubezpieczenie rentowe</td>
+                        <td id="disabilityPensionContribution">0</td>
+                    </tr>
+                    <tr>
+                        <td>ubezpieczenie chorobowe</td>
+                        <td id="sicknessContribution">0</td>
+                    </tr>
+                    <tr>
+                        <td>ubezpieczenie zdrowotne</td>
+                        <td id="healthInsured">0</td>
+                    </tr>
+                    <tr>
+                        <td>zaliczka na PIT</td>
+                        <td id="incomeTax">0</td>
+                    </tr>
+                    <tr>
+                        <td>kwota brutto</td>
+                        <td id="tableGrossSalarySecond">0</td>
+                    </tr>
+                </table>
             </div>
         </div>
     </div>
