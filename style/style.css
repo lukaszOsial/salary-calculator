@@ -65,6 +65,25 @@ p, button{
     align-items: center;
     justify-content: center;
     padding: 30px 0;
+    display: none;
+}
+.switches.active{
+    display: flex
+}
+.input{
+    display: none;
+}
+.input.active{
+    display: block;
+}
+.output{
+    display: none;
+}
+.output.active{
+    display: block;
+}
+.calculate{
+    display: flex;
 }
  button{
     font-size: 22px;
@@ -79,9 +98,6 @@ p, button{
 .switches button:hover{
     background-color: var(--second-color-alpha60);
     transition: all 0.3s ease-in;
-}
-.input{
-    width: 100%;
 }
 .input-salary{
     font-family: 'Source Sans Pro', sans-serif;
@@ -143,7 +159,6 @@ section{
 section.active{
     display: block;
 }
-
 .output .employeeSalary td{
     border: 1px solid white;
     padding: 5px 100px;

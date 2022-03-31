@@ -19,12 +19,12 @@
             </div>
         </div>
         <div class="container">
-            <div class="switches">
+            <div class="switches active">
                 <button type="button" class="form-of-employment active" data-target="#contract-of-employment">Umowa o prace</button>
                 <button type="button" class="form-of-employment" data-target="#contract-of-mandate">Umowa zlecenie</button>
                 <button type="button" class="form-of-employment" data-target="#contract-work">Umowa o dzieło</button>
             </div>
-            <div class="input">
+            <div class="input active">
                 <input type="text" placeholder="Wynagrodzenie brutto" class="input-salary" id="salary" pattern ="[0-9]{10}" required ><span>PLN</span>
                 <section class="contract-of-employment active" id="contract-of-employment">
                     <form class="first-form">
@@ -33,7 +33,7 @@
                         <label for="age">ukończony 26 rok życia</label>
                         <input type="checkbox" value="age" name="first"><br>
                     </form>
-                    <button type="submit" class="button-contract-of-employment">Oblicz</button>
+                    <button type="submit" class="button-contract-of-employment calculate">Oblicz</button>
                 </section>
                 <section class="contract-of-mandate" id="contract-of-mandate">
                     <form class="second-form">
@@ -49,7 +49,7 @@
                         <label for="student">jestem uczniem lub studentem do 26 roku życia</label>
                         <input type="radio" value="student" name="second"><br>
                     </form>
-                    <button type="submit" class="button-contract-of-mandate">Oblicz</button>
+                    <button type="submit" class="button-contract-of-mandate calculate">Oblicz</button>
                 </section>
                 <section class="contract-work" id="contract-work">
                     <form class="third-form">
@@ -59,14 +59,14 @@
                         <input type="radio" value="twentyPercent" name="thirdRadio" checked>
                         <label for="twentyPercent">20%</label>
                     </form>
-                    <button type="submit" class="button-contract-work">Oblicz</button>
+                    <button type="submit" class="button-contract-work calculate">Oblicz</button>
                 </section>
             </div>
             <div class="output">
                 <table class="employeeSalary">
                     <tr>
-                        <td id="tableNetSalary">0</td> 
-                        <td id="tableGrossSalary">0</td>
+                        <td id="tableNetSalary"></td> 
+                        <td id="tableGrossSalary"></td>
                         <td rowspan="2">
                             <button type="submit" class="button-reset">Zmień kryteria obliczeń</button>
                         </td>
@@ -80,31 +80,31 @@
                 <table class="employeeCosts">
                     <tr>
                         <td>kwota netto</td>
-                        <td id="tableNetSalarySecond">0</td>
+                        <td id="tableNetSalarySecond"></td>
                     </tr>
                     <tr>
                         <td>ubezpieczenie emerytalne</td>
-                        <td id="pensionContribution">0</td>
+                        <td id="pensionContribution">0.00</td>
                     </tr>
                     <tr>
                         <td>ubezpieczenie rentowe</td>
-                        <td id="disabilityPensionContribution">0</td>
+                        <td id="disabilityPensionContribution">0.00</td>
                     </tr>
                     <tr>
                         <td>ubezpieczenie chorobowe</td>
-                        <td id="sicknessContribution">0</td>
+                        <td id="sicknessContribution">0.00</td>
                     </tr>
                     <tr>
                         <td>ubezpieczenie zdrowotne</td>
-                        <td id="healthInsured">0</td>
+                        <td id="healthInsured">0.00</td>
                     </tr>
                     <tr>
                         <td>zaliczka na PIT</td>
-                        <td id="incomeTax">0</td>
+                        <td id="incomeTax">0.00</td>
                     </tr>
                     <tr>
                         <td>kwota brutto</td>
-                        <td id="tableGrossSalarySecond">0</td>
+                        <td id="tableGrossSalarySecond"></td>
                     </tr>
                 </table>
             </div>

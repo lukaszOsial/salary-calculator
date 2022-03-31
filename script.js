@@ -1,6 +1,7 @@
-/*-----Button Form of Employment Active and Section Active-----*/
 const switches = document.querySelector(".switches"),
-container = document.querySelector(".container");
+container = document.querySelector(".container"),
+input = document.querySelector(".input"),
+output = document.querySelector(".output");
 
 switches.addEventListener("click", (element) =>{
     if(element.target.classList.contains("form-of-employment") && !element.target.classList.contains(".active")){
@@ -11,7 +12,7 @@ switches.addEventListener("click", (element) =>{
         container.querySelector(target).classList.add("active");
     }
 });
-/*-----Buttons----*/
+
 const firstSalaryButton = document.querySelector(".button-contract-of-employment");
 firstSalaryButton.addEventListener("click", () =>{
     getSalary();
@@ -25,6 +26,11 @@ firstSalaryButton.addEventListener("click", () =>{
     taxPrepayment();
     incomeTax();
     netSalary();
+    input.classList.remove("active");
+    output.classList.add("active");
+    switches.classList.remove("active");
+    console.log(taxPrepayment());
+    console.log(incomeTax());
 });
 const secondSalaryButton = document.querySelector(".button-contract-of-mandate");
 secondSalaryButton.addEventListener("click", () =>{
@@ -37,6 +43,9 @@ secondSalaryButton.addEventListener("click", () =>{
     taxPrepaymentSecond();
     incomeTaxSecond();
     netSalarySecond();
+    input.classList.remove("active");
+    output.classList.add("active");
+    switches.classList.remove("active");
 });
 const thirdSalaryButton = document.querySelector(".button-contract-work");
 thirdSalaryButton.addEventListener("click", () =>{
@@ -44,44 +53,71 @@ thirdSalaryButton.addEventListener("click", () =>{
     getThirdForm();
     incomeTaxThird();
     netSalaryThird();
+    input.classList.remove("active");
+    output.classList.add("active");
+    switches.classList.remove("active");
 });
-/*----First salary-----*/
+const resetButton = document.querySelector(".button-reset");
+resetButton.addEventListener("click", () =>{
+    switches.classList.add("active");
+    input.classList.add("active");
+    output.classList.remove("active");
+    checkedFirstForm = [];
+    radioActiveSecondForm ='';
+    radioActiveThirdForm = '';
+    document.getElementById("tableGrossSalary").innerHTML = '0.00';
+    document.getElementById("tableGrossSalarySecond").innerHTML = '0.00';
+    document.getElementById("pensionContribution").innerHTML = '0.00';
+    document.getElementById("disabilityPensionContribution").innerHTML = '0.00';
+    document.getElementById("sicknessContribution").innerHTML = '0.00';
+    document.getElementById("healthInsured").innerHTML = '0.00';
+    document.getElementById("incomeTax").innerHTML = '0.00';
+    document.getElementById("tableNetSalary").innerHTML = '0.00';
+    document.getElementById("tableNetSalarySecond").innerHTML = '0.00';
+});
+
 function getSalary(){
-    let grossSalary = document.getElementById('salary').value;
-    document.getElementById("tableGrossSalary").innerHTML = grossSalary;
-    document.getElementById("tableGrossSalarySecond").innerHTML = grossSalary;
+    let grossSalary = document.getElementById('salary').value * 1;
+    document.getElementById("tableGrossSalary").innerHTML = grossSalary.toFixed(2);
+    document.getElementById("tableGrossSalarySecond").innerHTML = grossSalary.toFixed(2);
     return grossSalary;
 }
 let checkedFirstForm = [];
 function getFirstForm(){
     const first = document.getElementsByName('first');
     for(let i = 0; i < first.length; i++){
-    if(first[i].checked){
-        return checkedFirstForm += ' ' + first[i].value;
+        if(first[i].checked){
+            return checkedFirstForm += ' ' + first[i].value;
         }
     }
-    console.log(checkedFirstForm);
 }
 function pensionContributions(){
-    return document.getElementById("pensionContribution").innerHTML = getSalary() * 0.0976;
+    let contribution = getSalary() * 0.0976;
+    document.getElementById("pensionContribution").innerHTML = contribution.toFixed(2);
+    return contribution;
 }
 function disabilityPensionContribution(){
-    return document.getElementById("disabilityPensionContribution").innerHTML = getSalary() * 0.015;
+    let contribution = getSalary() * 0.015;
+    document.getElementById("disabilityPensionContribution").innerHTML = contribution.toFixed(2);
+    return contribution;
 }
 function sicknessContribution(){
-    return document.getElementById("sicknessContribution").innerHTML = getSalary() * 0.0245;
-    
+    let contribution = getSalary() * 0.0245;
+    document.getElementById("sicknessContribution").innerHTML = contribution.toFixed(2);
+    return contribution;
 }
 function socialContributions(){
     return pensionContributions() + disabilityPensionContribution() + sicknessContribution();
 }
 function healthInsured(){
-    return document.getElementById("healthInsured").innerHTML = (getSalary() - socialContributions()) * 0.09;
+    let contribution = (getSalary() - socialContributions()) * 0.09;
+    document.getElementById("healthInsured").innerHTML = contribution.toFixed(2);
+    return contribution;
 }
 function workChecked(){
     if(checkedFirstForm.includes("work")){
         return 250;
-    }else {
+    }else{
         return 300;
     }
 }
@@ -89,42 +125,43 @@ function taxPrepayment(){
     return getSalary() - socialContributions() - workChecked();
 }
 function incomeTax(){
-    if(!checkedFirstForm.includes("age") || taxPrepayment() <= 2500){
+    if(taxPrepayment() <= 2500 || checkedFirstForm.includes("work") && !checkedFirstForm.includes("age")) {
         return document.getElementById("incomeTax").innerHTML = 0;
     }else{
-        return document.getElementById("incomeTax").innerHTML = (taxPrepayment() * 0.17) - 425;
+        return document.getElementById("incomeTax").innerHTML = ((taxPrepayment() * 0.17) - 425);
     }
-    
 }
 function netSalary(){
     let netSalary = getSalary() - socialContributions() - healthInsured() - incomeTax();
-    document.getElementById("tableNetSalary").innerHTML = netSalary;
-    document.getElementById("tableNetSalarySecond").innerHTML = netSalary;
+    document.getElementById("tableNetSalary").innerHTML = netSalary.toFixed(2);
+    document.getElementById("tableNetSalarySecond").innerHTML = netSalary.toFixed(2);
     return netSalary;
 }
 
-/*----Second salary-----*/
 let radioActiveSecondForm ='';
 function getSecondForm(){
     const second = document.getElementsByName('second');
     for(let i = 0; i < second.length; i++){
-    if(second[i].checked){
-        return radioActiveSecondForm = second[i].value;
+        if(second[i].checked){
+            return radioActiveSecondForm = second[i].value;
+        }
     }
 }
-console.log(radioActiveSecondForm);
-}
 function pensionContributionsSecond(){
+    let contribution = 0;
     if(radioActiveSecondForm.includes("student") || radioActiveSecondForm.includes("employeeSecondYoung") || radioActiveSecondForm.includes("employeeSecondNormal")){
-        return document.getElementById("pensionContribution").innerHTML = 0;
-    } else {
+        document.getElementById("pensionContribution").innerHTML = contribution.toFixed(2);
+        return contribution; 
+    }else{
         return pensionContributions();
     }
 }
 function disabilityPensionContributionSecond(){
+    let contribution = 0;
     if(radioActiveSecondForm.includes("student") || radioActiveSecondForm.includes("employeeSecondYoung") || radioActiveSecondForm.includes("employeeSecondNormal")){
-        return document.getElementById("disabilityPensionContribution").innerHTML = 0;
-    } else {
+        document.getElementById("disabilityPensionContribution").innerHTML = contribution.toFixed(2);
+        return contribution;
+    }else{
         return disabilityPensionContribution();
     }
 }
@@ -132,50 +169,54 @@ function socialContributionsSecond(){
     return pensionContributionsSecond() + disabilityPensionContributionSecond();
 }
 function healthInsuredSecond(){
+    let contribution = 0;
     if(radioActiveSecondForm.includes("student")){
-        return document.getElementById("healthInsured").innerHTML = 0;
-    } else {
-        return document.getElementById("healthInsured").innerHTML = (getSalary() - socialContributionsSecond()) * 0.09;
+        document.getElementById("healthInsured").innerHTML = contribution.toFixed(2);
+        return contribution;
+    }else{
+        document.getElementById("healthInsured").innerHTML = ((getSalary() - socialContributionsSecond()) * 0.09).toFixed(2);
+        return contribution = (getSalary() - socialContributionsSecond()) * 0.09;
     }
 }
 function taxPrepaymentSecond(){
     return (getSalary() - socialContributionsSecond()) * 0.2;
 }
 function incomeTaxSecond(){
+    let tax = 0;
     if(radioActiveSecondForm.includes("employeeNormal") || radioActiveSecondForm.includes("employeeSecondNormal")){
-        return document.getElementById("incomeTax").innerHTML = (getSalary() - socialContributionsSecond() - taxPrepaymentSecond()) * 0.17;
+        document.getElementById("incomeTax").innerHTML = ((getSalary() - socialContributionsSecond() - taxPrepaymentSecond()) * 0.17).toFixed(2);
+        return tax = (getSalary() - socialContributionsSecond() - taxPrepaymentSecond()) * 0.17;
     }else{
-        return document.getElementById("incomeTax").innerHTML = 0;
+        document.getElementById("incomeTax").innerHTML = tax.toFixed(2);
+        return tax;
     }
 }
 function netSalarySecond(){
     let netSalary = getSalary() - socialContributionsSecond() - healthInsuredSecond() - incomeTaxSecond();
-    document.getElementById("tableNetSalary").innerHTML = netSalary;
-    document.getElementById("tableNetSalarySecond").innerHTML = netSalary;
+    document.getElementById("tableNetSalary").innerHTML = netSalary.toFixed(2);
+    document.getElementById("tableNetSalarySecond").innerHTML = netSalary.toFixed(2);
     return netSalary;
-    
 }
-/*----Third salary-----*/
+
 let radioActiveThirdForm = '';
 function getThirdForm(){
     const thirdRadio = document.getElementsByName('thirdRadio');
     for(let i = 0; i < thirdRadio.length; i++){
-    if(thirdRadio[i].checked){
-        return radioActiveThirdForm = thirdRadio[i].value;
+        if(thirdRadio[i].checked){
+            return radioActiveThirdForm = thirdRadio[i].value;
+        }
     }
-}
-console.log(radioActive);
 }
 function incomeTaxThird(){
     if(radioActiveThirdForm.includes("twentyPercent")){
-        return document.getElementById("incomeTax").innerHTML = (getSalary() - (getSalary()  * 0.2)) * 0.17;
+        return document.getElementById("incomeTax").innerHTML = ((getSalary() - (getSalary()  * 0.2)) * 0.17).toFixed(2);
     }else{   
-        return document.getElementById("incomeTax").innerHTML = (getSalary()  * 0.5) * 0.17;     
+        return document.getElementById("incomeTax").innerHTML = ((getSalary()  * 0.5) * 0.17).toFixed(2);     
     }
 }
 function netSalaryThird(){
     let netSalary = getSalary() - incomeTaxThird();
-    document.getElementById("tableNetSalary").innerHTML = netSalary;
-    document.getElementById("tableNetSalarySecond").innerHTML = netSalary;
+    document.getElementById("tableNetSalary").innerHTML = netSalary.toFixed(2);
+    document.getElementById("tableNetSalarySecond").innerHTML = netSalary.toFixed(2);
     return netSalary;
 }
