@@ -1,7 +1,8 @@
 const switches = document.querySelector(".switches"),
 container = document.querySelector(".container"),
 input = document.querySelector(".input"),
-output = document.querySelector(".output");
+output = document.querySelector(".output"),
+formError = document.querySelector(".formError");
 
 switches.addEventListener("click", (element) =>{
     if(element.target.classList.contains("form-of-employment") && !element.target.classList.contains(".active")){
@@ -10,52 +11,63 @@ switches.addEventListener("click", (element) =>{
         const target = element.target.getAttribute("data-target");
         container.querySelector("section.active").classList.remove("active");
         container.querySelector(target).classList.add("active");
+        formError.innerHTML = '';
+        document.getElementById('salary').value = "";
     }
 });
-
 const firstSalaryButton = document.querySelector(".button-contract-of-employment");
 firstSalaryButton.addEventListener("click", () =>{
-    getSalary();
-    getFirstForm();
-    pensionContributions();
-    disabilityPensionContribution();
-    sicknessContribution();
-    socialContributions();
-    healthInsured();
-    workChecked();
-    taxPrepayment();
-    incomeTax();
-    netSalary();
-    input.classList.remove("active");
-    output.classList.add("active");
-    switches.classList.remove("active");
-    console.log(taxPrepayment());
-    console.log(incomeTax());
+    if(document.getElementById('salary').value.match(/^[0-9]+$/)){
+        getSalary();
+        getFirstForm();
+        pensionContributions();
+        disabilityPensionContribution();
+        sicknessContribution();
+        socialContributions();
+        healthInsured();
+        workChecked();
+        taxPrepayment();
+        incomeTax();
+        netSalary();
+        input.classList.remove("active");
+        output.classList.add("active");
+        switches.classList.remove("active");
+    }else{
+        formError.innerHTML = "Podaj poprawną kwotę zarobków w liczbie całkowitej";
+    }     
 });
 const secondSalaryButton = document.querySelector(".button-contract-of-mandate");
 secondSalaryButton.addEventListener("click", () =>{
-    getSalary();
-    getSecondForm();
-    pensionContributionsSecond();
-    disabilityPensionContributionSecond();
-    socialContributionsSecond();
-    healthInsuredSecond();
-    taxPrepaymentSecond();
-    incomeTaxSecond();
-    netSalarySecond();
-    input.classList.remove("active");
-    output.classList.add("active");
-    switches.classList.remove("active");
+    if(document.getElementById('salary').value.match(/^[0-9]+$/)){
+        getSalary();
+        getSecondForm();
+        pensionContributionsSecond();
+        disabilityPensionContributionSecond();
+        socialContributionsSecond();
+        healthInsuredSecond();
+        taxPrepaymentSecond();
+        incomeTaxSecond();
+        netSalarySecond();
+        input.classList.remove("active");
+        output.classList.add("active");
+        switches.classList.remove("active");
+    }else{
+        formError.innerHTML = "Podaj poprawną kwotę zarobków w liczbie całkowitej";
+    } 
 });
 const thirdSalaryButton = document.querySelector(".button-contract-work");
 thirdSalaryButton.addEventListener("click", () =>{
-    getSalary();
-    getThirdForm();
-    incomeTaxThird();
-    netSalaryThird();
-    input.classList.remove("active");
-    output.classList.add("active");
-    switches.classList.remove("active");
+    if(document.getElementById('salary').value.match(/^[0-9]+$/)){
+        getSalary();
+        getThirdForm();
+        incomeTaxThird();
+        netSalaryThird();
+        input.classList.remove("active");
+        output.classList.add("active");
+        switches.classList.remove("active");
+    }else{
+        formError.innerHTML = "Podaj poprawną kwotę zarobków w liczbie całkowitej";
+    } 
 });
 const resetButton = document.querySelector(".button-reset");
 resetButton.addEventListener("click", () =>{
@@ -74,6 +86,8 @@ resetButton.addEventListener("click", () =>{
     document.getElementById("incomeTax").innerHTML = '0.00';
     document.getElementById("tableNetSalary").innerHTML = '0.00';
     document.getElementById("tableNetSalarySecond").innerHTML = '0.00';
+    formError.innerHTML = '';
+    document.getElementById('salary').value = "";
 });
 
 function getSalary(){
@@ -87,9 +101,10 @@ function getFirstForm(){
     const first = document.getElementsByName('first');
     for(let i = 0; i < first.length; i++){
         if(first[i].checked){
-            return checkedFirstForm += ' ' + first[i].value;
+            checkedFirstForm += "" + first[i].value;
         }
     }
+    return
 }
 function pensionContributions(){
     let contribution = getSalary() * 0.0976;
@@ -125,10 +140,13 @@ function taxPrepayment(){
     return getSalary() - socialContributions() - workChecked();
 }
 function incomeTax(){
-    if(taxPrepayment() <= 2500 || checkedFirstForm.includes("work") && !checkedFirstForm.includes("age")) {
-        return document.getElementById("incomeTax").innerHTML = 0;
+    let tax = 0;
+    if(taxPrepayment() >= 2500 && checkedFirstForm.includes("age") || taxPrepayment() >= 2500 && checkedFirstForm.includes("age", 1)) {
+         document.getElementById("incomeTax").innerHTML = ((taxPrepayment() * 0.17) - 425).toFixed(2);
+         return tax = (taxPrepayment() * 0.17) - 425;
     }else{
-        return document.getElementById("incomeTax").innerHTML = ((taxPrepayment() * 0.17) - 425);
+         document.getElementById("incomeTax").innerHTML = tax.toFixed(2);
+         return tax;
     }
 }
 function netSalary(){

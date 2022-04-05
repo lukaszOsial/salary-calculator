@@ -11,7 +11,7 @@
     <div class="main">
         <div class="introduction">
             <div class="home-img">
-                <img src="images/polski_lad.png" alt="polski lad logo">
+                <img src="images/image.png" alt="home image">
             </div>
             <div class="home-info">
                 <h1>Kalkulator wynagrodzeń</h1>
@@ -25,7 +25,10 @@
                 <button type="button" class="form-of-employment" data-target="#contract-work">Umowa o dzieło</button>
             </div>
             <div class="input active">
-                <input type="text" placeholder="Wynagrodzenie brutto" class="input-salary" id="salary" pattern ="[0-9]{10}" required ><span>PLN</span>
+                <div class="inpur-salary">
+                    <input type="text" placeholder="Wynagrodzenie brutto" id="salary"><span>PLN</span>
+                    <p class="formError"><p/>
+                </div>
                 <section class="contract-of-employment active" id="contract-of-employment">
                     <form class="first-form">
                         <label for="work">praca w miejscu zamieszkania</label>
@@ -53,7 +56,7 @@
                 </section>
                 <section class="contract-work" id="contract-work">
                     <form class="third-form">
-                        <label>koszty uzyskania przychodu</label>
+                        <label for="third-form">koszty uzyskania przychodu</label>
                         <input type="radio" value="fiftyPercent" name="thirdRadio">
                         <label for="fiftyPercent">50%</label>
                         <input type="radio" value="twentyPercent" name="thirdRadio" checked>
@@ -65,51 +68,71 @@
             <div class="output">
                 <table class="employeeSalary">
                     <tr>
-                        <td id="tableNetSalary"></td> 
+                        <td id="tableNetSalary"></td>
+                        <td class="pln">PLN</td> 
                         <td id="tableGrossSalary"></td>
+                        <td class="pln">PLN</td>
                         <td rowspan="2">
-                            <button type="submit" class="button-reset">Zmień kryteria obliczeń</button>
+                            <button type="submit" class="button-reset">Oblicz ponownie</button>
                         </td>
                     </tr>
                     <tr>
-                        <td>kwota netto</td>
-                        <td>kwota brutto</td>
+                        <td colspan="2">kwota netto</td>
+                        <td colspan="2">kwota brutto</td>
                     </tr>
                 </table>
-                <p>Koszty pracownika dla miesięcznego wynagrodzenia</p>
-                <table class="employeeCosts">
-                    <tr>
-                        <td>kwota netto</td>
-                        <td id="tableNetSalarySecond"></td>
-                    </tr>
-                    <tr>
-                        <td>ubezpieczenie emerytalne</td>
-                        <td id="pensionContribution">0.00</td>
-                    </tr>
-                    <tr>
-                        <td>ubezpieczenie rentowe</td>
-                        <td id="disabilityPensionContribution">0.00</td>
-                    </tr>
-                    <tr>
-                        <td>ubezpieczenie chorobowe</td>
-                        <td id="sicknessContribution">0.00</td>
-                    </tr>
-                    <tr>
-                        <td>ubezpieczenie zdrowotne</td>
-                        <td id="healthInsured">0.00</td>
-                    </tr>
-                    <tr>
-                        <td>zaliczka na PIT</td>
-                        <td id="incomeTax">0.00</td>
-                    </tr>
-                    <tr>
-                        <td>kwota brutto</td>
-                        <td id="tableGrossSalarySecond"></td>
-                    </tr>
-                </table>
+                <div class="employeeCosts">
+                    <div class="employeeCostsInfo">
+                        <p>Koszty pracownika dla miesięcznego wynagrodzenia</p>
+                        <table>
+                            <tr id="firstRow">
+                                <td class="firstCol">kwota netto</td>
+                                <td class="secondCol" id="tableNetSalarySecond"></td>
+                                <td class="pln thirdCol">PLN</td>
+                            </tr>
+                            <tr>
+                                <td class="firstCol">ubezpieczenie emerytalne</td>
+                                <td class="secondCol" id="pensionContribution">0.00</td>
+                                <td class="pln thirdCol">PLN</td>
+                            </tr>
+                            <tr>
+                                <td class="firstCol">ubezpieczenie rentowe</td>
+                                <td class="secondCol" id="disabilityPensionContribution">0.00</td>
+                                <td class="pln thirdCol">PLN</td>
+                            </tr>
+                            <tr>
+                                <td class="firstCol">ubezpieczenie chorobowe</td>
+                                <td class="secondCol" id="sicknessContribution">0.00</td>
+                                <td class="pln thirdCol">PLN</td>
+                            </tr>
+                            <tr>
+                                <td class="firstCol">ubezpieczenie zdrowotne</td>
+                                <td class="secondCol" id="healthInsured">0.00</td>
+                                <td class="pln thirdCol">PLN</td>
+                            </tr>
+                            <tr>
+                                <td class="firstCol">zaliczka na PIT</td>
+                                <td class="secondCol" id="incomeTax">0.00</td>
+                                <td class="pln thirdCol">PLN</td>
+                            </tr>
+                            <tr id="secondRow">
+                                <td class="firstCol">kwota brutto</td>
+                                <td class="secondCol" id="tableGrossSalarySecond"></td>
+                                <td class="pln thirdCol">PLN</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="output-img">
+                        <img src="images/salary-image.png" alt="salary-image">
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+    <footer>
+        <p>Made by</p>
+        <img src="images/logo.png" alt="logo">
+    </footer>
     <script src="script.js"></script>
 </body>
 </html>

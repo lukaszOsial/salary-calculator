@@ -5,6 +5,7 @@
     --main-color: #ffffff;
     --second-color: rgb(58, 86, 128);
     --second-color-alpha60: rgba(58, 86, 128, 0.6);
+    --error-color: #ff0000;
 }
 *{
     box-sizing: border-box;
@@ -33,6 +34,9 @@ h1,h2{
 p, button{
     font-family: 'Source Sans Pro', sans-serif;
 }
+img{
+    user-select: none;
+}
 .main{
     max-width: 1350px;
     margin: auto;
@@ -43,13 +47,16 @@ p, button{
     flex-wrap: wrap;
     align-items: center;
 }
-.home-img,.home-info{
-    width: 50%;
+.home-img{
+    width: 40%;
+}
+.home-info{
+    width: 60%;
 }
 .home-img img{
     width: 100%;
-    max-width: 800px;
-    padding-right: 40px;
+    max-width: 350px;
+    padding-right: 50px;
 }
 .home-info h1{
     font-size: 55px;
@@ -60,6 +67,15 @@ p, button{
 .container{
     width: 100%;
 }
+::-webkit-scrollbar{
+    width: 10px;
+}
+::-webkit-scrollbar-track{
+    background-color: var(--white);
+}
+::-webkit-scrollbar-thumb{
+    background-color: var(--second-color);
+}
 .switches{
     display: flex;
     align-items: center;
@@ -68,7 +84,7 @@ p, button{
     display: none;
 }
 .switches.active{
-    display: flex
+    display: flex;
 }
 .input{
     display: none;
@@ -85,7 +101,7 @@ p, button{
 .calculate{
     display: flex;
 }
- button{
+button{
     font-size: 22px;
     padding: 10px 40px;
     margin: 0 30px;
@@ -97,9 +113,8 @@ p, button{
 }
 .switches button:hover{
     background-color: var(--second-color-alpha60);
-    transition: all 0.3s ease-in;
 }
-.input-salary{
+#salary{
     font-family: 'Source Sans Pro', sans-serif;
     height: 40px;
     font-size: 25px;
@@ -125,7 +140,7 @@ p, button{
 .first-form,.second-form,.third-form{
     max-width: 580px;
 }
-.first-form input[type="checkbox"],.second-form input[type="radio"],.third-form input[type="checkbox"],.third-form input[type="radio"]{
+.first-form input[type="checkbox"],.second-form input[type="radio"],.third-form input[type="radio"]{
     cursor: pointer;
     accent-color: var(--second-color);
     position: relative;
@@ -160,16 +175,130 @@ section.active{
     display: block;
 }
 .output .employeeSalary td{
-    border: 1px solid white;
-    padding: 5px 100px;
+    padding: 0 60px;
     font-size: 25px;
 }
-.output .employeeCosts td{
-    border: 1px solid white;
+#tableNetSalary,#tableGrossSalary{
+    padding-right: 5px;
+    font-weight: 700;
+}
+.output .employeeSalary .pln{
+    float: left;
+    padding-left: 0;
+    font-weight: 700;
+}
+.output .employeeCostsInfo td{
     font-size: 22px;
 }
 .output p{
     font-size: 22px;
-    margin: 20px 0;
+    margin: 35px 0 20px 0;
 }
-
+.output .employeeCostsInfo .firstCol{
+    padding-right: 180px;
+}
+.output .employeeCostsInfo .secondCol{
+    padding-right: 5px;
+    text-align: right;
+}
+#firstRow,#secondRow{
+    font-weight: 700;
+}
+.employeeCosts{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.employeeCostsInfo{
+    width: 60%;
+}
+.output-img{
+    width: 40%;
+}
+.output-img img{
+    width: 100%;
+    max-width: 320px;
+    padding-right: 10px;
+    padding-top: 60px;
+}
+.formError{
+    margin-top: 10px;
+    color: var(--error-color);
+}
+footer{
+  text-align: center;
+  padding-top: 40px;
+  max-height: 40px;
+}
+footer p{
+    font-size: 18px;
+}
+footer img{
+    max-width: 250px;
+}
+@media only screen and (max-width: 900px){
+    .home-img,.home-info{
+        width: 100%;
+    }
+    .home-info{
+        text-align: center;
+    }
+    .home-img img{
+        display: block;
+        margin: 0 auto;
+    }
+    button{
+        padding: 10px 20px;
+        margin: 0 20px;
+    }
+    .input.active{
+        text-align: center;
+    }
+    .first-form,.second-form,.third-form{
+        margin: 0 auto;
+        text-align: left;
+    }
+}
+@media only screen and (max-width: 710px){
+    .switches{
+        flex-wrap: wrap;
+    }
+    button{
+        margin-bottom: 25px;
+    }
+    .second-form label{
+        display: inline-block;
+        max-width: 500px;
+    }
+    .first-form,.third-form{
+        max-width: 450px;
+    }
+    .home-info h1{
+        font-size: 38px;
+    }
+    .home-info h2{
+        font-size: 25px;
+    }
+}
+@media only screen and (max-width: 585px){
+    .second-form label{
+        margin-left: auto;
+        max-width: 400px;
+    }
+    .second-form input[type="radio"]{
+        float: left;
+        margin-right: 20px;
+        margin-left: 20px;
+    }
+}
+@media only screen and (max-width: 485px){
+    .first-form{
+        max-width: 350px;
+    }
+    .second-form label{
+        max-width: 270px;
+    }
+    .third-form{
+        width: 250px;
+    }
+}
