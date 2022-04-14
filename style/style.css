@@ -174,6 +174,11 @@ section{
 section.active{
     display: block;
 }
+.containerSalary{
+    display: flex;
+    align-items: center;
+}
+
 .output .employeeSalary td{
     padding: 0 60px;
     font-size: 25px;
@@ -181,6 +186,9 @@ section.active{
 #tableNetSalary,#tableGrossSalary{
     padding-right: 5px;
     font-weight: 700;
+}
+.output .employeeSalary{
+    padding-top: 20px;
 }
 .output .employeeSalary .pln{
     float: left;
@@ -236,6 +244,28 @@ footer p{
 footer img{
     max-width: 250px;
 }
+@media only screen and (max-width: 980px){
+    .button-reset{
+        padding: 10px 20px;
+        margin: 0 auto;
+    }
+    .employeeCostsInfo{
+        width: 100%;
+    }
+    .employeeCostsInfo p{
+        text-align: center;
+    }
+    .employeeCostsInfo table{
+        margin: 0 auto;
+    }
+    .output-img{
+        margin: 0 auto;
+    }
+    .output .employeeSalary{
+        margin: 0 auto;
+    }
+    
+}
 @media only screen and (max-width: 900px){
     .home-img,.home-info{
         width: 100%;
@@ -244,7 +274,7 @@ footer img{
         text-align: center;
     }
     .home-img img{
-        display: block;
+        display: flex;
         margin: 0 auto;
     }
     button{
@@ -257,6 +287,14 @@ footer img{
     .first-form,.second-form,.third-form{
         margin: 0 auto;
         text-align: left;
+    }
+}
+@media only screen and (max-width: 757px){
+    .output .containerSalary{
+        flex-wrap: wrap;
+    }
+    .button-reset{
+        margin-top: 20px;
     }
 }
 @media only screen and (max-width: 710px){
@@ -290,6 +328,23 @@ footer img{
         margin-right: 20px;
         margin-left: 20px;
     }
+    .output-img{
+        display: none;
+    }
+    .employeeCostsInfo{
+        width: 100%;
+    }
+    .output .employeeCostsInfo .firstCol{
+        padding-right: 80px;
+    }
+}
+@media only screen and (max-width: 495px){
+    .second-form label{
+        max-width: 290px;
+    }
+    .third-form{
+        flex-wrap: wrap;
+    }
 }
 @media only screen and (max-width: 485px){
     .first-form{
@@ -298,7 +353,7 @@ footer img{
     .second-form label{
         max-width: 270px;
     }
-    .third-form{
-        width: 250px;
+    .home-img{
+        display: none;
     }
 }
