@@ -20,13 +20,14 @@
     display: none !important;
 }
 body{
+    display: flex;
+    flex-direction: column;
     min-height: 100vh;
     background: var(--background);
     font-size: 16px;
     font-weight: 300;
     color: var(--main-color);
     line-height: 1.5;
-    padding: 5vh 15px;
 }
 h1,h2{
     font-family: 'Playfair Display', serif;
@@ -122,6 +123,7 @@ button{
     border-radius: 5px;
     background-color: var(--main-color);
     text-align: center;
+    max-width: 280px;
 }
 .input span{
     font-family: 'Source Sans Pro', sans-serif;
@@ -234,12 +236,12 @@ section.active{
     color: var(--error-color);
 }
 footer{
-  text-align: center;
-  padding-top: 40px;
-  max-height: 40px;
+    padding-top: 40px;
+    margin: 0 auto;
 }
 footer p{
     font-size: 18px;
+    text-align: center;
 }
 footer img{
     max-width: 250px;
@@ -251,6 +253,7 @@ footer img{
     }
     .employeeCostsInfo{
         width: 100%;
+        margin: 0 10px;
     }
     .employeeCostsInfo p{
         text-align: center;
@@ -289,7 +292,7 @@ footer img{
         text-align: left;
     }
 }
-@media only screen and (max-width: 757px){
+@media only screen and (max-width: 782px){
     .output .containerSalary{
         flex-wrap: wrap;
     }
@@ -320,13 +323,12 @@ footer img{
 }
 @media only screen and (max-width: 585px){
     .second-form label{
-        margin-left: auto;
-        max-width: 400px;
+        width: 85%;
     }
     .second-form input[type="radio"]{
         float: left;
-        margin-right: 20px;
         margin-left: 20px;
+        margin-right: 20px;
     }
     .output-img{
         display: none;
@@ -337,23 +339,46 @@ footer img{
     .output .employeeCostsInfo .firstCol{
         padding-right: 80px;
     }
+    .output .employeeSalary td{
+        padding: 0 35px;
+    }
+    
+    .output .employeeCostsInfo p{
+        max-width: 400px;
+        margin: 20px auto;
+    }
+    
 }
 @media only screen and (max-width: 495px){
-    .second-form label{
-        max-width: 290px;
+    .first-form{
+        max-width: 350px;
+        margin: 0 20px;
     }
-    .third-form{
-        flex-wrap: wrap;
+    #salary{
+        font-size: 22px;
+        max-width: 220px;
     }
 }
 @media only screen and (max-width: 485px){
-    .first-form{
-        max-width: 350px;
-    }
-    .second-form label{
-        max-width: 270px;
-    }
     .home-img{
         display: none;
     }
+    .third-form{
+        max-width: 245px;
+        margin-bottom: 20px;
+    }
+    .third-form input[type="radio"]{
+        left: -85px;
+    }
+    .third-form label[for="twentyPercent"],.third-form label[for="fiftyPercent"]{
+        padding: 0 20px;
+    }
+    .output .employeeSalary td{
+        padding: 0 20px;
+        font-size: 22px;
+    }
+    .output .employeeCostsInfo td{
+       font-size: 20px;
+    }
+    
 }
