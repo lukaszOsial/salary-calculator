@@ -380,5 +380,8 @@ footer img{
     .output .employeeCostsInfo td{
        font-size: 20px;
     }
+    .second-form label{
+        width: 80%;
+    }
     
 }
