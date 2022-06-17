@@ -15,6 +15,6 @@ JavaScript, CSS, HTML
 
 ## Screenshots
 
-![App Screenshot](https://github.com/lukaszOsial/home-budget-app/blob/master/public/images/home-budget-app.png?raw=true)
+![App Screenshot](https://github.com/lukaszOsial/salary-calculator/blob/master/images/salary-calculator.png?raw=true)
 
-![App Screenshot](https://github.com/lukaszOsial/home-budget-app/blob/master/public/images/home-budget-app2.png?raw=true)
+![App Screenshot](https://github.com/lukaszOsial/salary-calculator/blob/master/images/salary-calculator2.png?raw=true)
